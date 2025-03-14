@@ -1,9 +1,8 @@
-import Book  from '../models/book';
-import BookInstance, { IBookInstance }  from '../models/bookinstance';
-import express from 'express';
+import Book from "../models/book";
+import BookInstance, { IBookInstance } from "../models/bookinstance";
+import express from "express";
 
 const router = express.Router();
-
 
 /**
  * @route GET /book_dtls
@@ -13,12 +12,12 @@ const router = express.Router();
  * @returns 404 - if the book is not found
  * @returns 500 - if there is an error in the database
  */
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   const id = req.query.id as string;
   try {
     const [book, copies] = await Promise.all([
       Book.getBook(id),
-      BookInstance.getBookDetails(id)
+      BookInstance.getBookDetails(id),
     ]);
 
     if (!book) {
@@ -29,10 +28,10 @@ router.get('/', async (req, res) => {
     res.send({
       title: book.title,
       author: book.author.name,
-      copies: copies
+      copies: copies,
     });
   } catch (err) {
-    console.error('Error fetching book:', err);
+    console.error("Error fetching book:", err);
     res.status(500).send(`Error fetching book ${id}`);
   }
 });

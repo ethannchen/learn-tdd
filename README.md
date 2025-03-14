@@ -37,7 +37,7 @@ for a server in typescript. The examples are as follows:
 
 # For you to do
 
-## Part 1
+## Part 1 ✅
 
 Write a unit test for the GET /authors service. 
 The service should respond with a list of author names and lifetimes sorted by family name of the authors. It should respond
@@ -45,13 +45,18 @@ with a "No authors found" message when there are no authors in the database. If 
 service responds with an error code of 500. The unit test
 should be placed in `tests/authorService.test.ts`.
 
-## Part 2
+## Part 2 ✅
 
 Briefly explain a limitation of the tests in `tests/authorSchema.test.ts` in the space below.
 
+In terms of the limitation of unit tests: while the tests check if the logic works and simulate expected outcomes, they don't actually test how the schema interacts with a real MongoDB database. This can lead to hidden bugs that only show up when using an actual database. To fix this, we can set up integration tests that work with a real database.
+
+In terms of the coverage of unit tests: we should also consider edge cases like: 
+1. Dates in the future, 
+2. Inconsistent date_of_birth and date_of_death (e.g., death date before birth date).
 
 
-## Part 3
+## Part 3 (not required)
 
 Generate the coverage report for the tests you wrote. How can you improve
 your tests using the coverage report? Briefly explain your 
